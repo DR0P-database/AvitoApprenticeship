@@ -1,0 +1,7 @@
+VERSION = '0.1.0'
+SERVICE = 'AvitoApprenticeship'
+DB_HOST = 'localhost'
+DB_PORT = '5432'
+DB_USER = 'postgres'
+DB_PASSWORD = 'api'
+DB_NAME = 'avitotech'
