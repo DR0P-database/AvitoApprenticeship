@@ -3,9 +3,9 @@ from pydantic import BaseModel
 
 
 class SUserBannerGet(BaseModel):
-    feature_id: int | None = None
-    tag_id: int | None = None
-    use_last_revision: bool | None = None
+    feature_id: int
+    tag_id: int
+    use_last_revision: bool | None = False
 
 
 class SUserBanner(BaseModel):
