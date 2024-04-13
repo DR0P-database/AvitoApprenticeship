@@ -35,7 +35,6 @@ class BannerRepository:
     @staticmethod
     async def add_banner(data: SBannerAdd):
         async with new_session() as session:
-
             query = (
                 select(BannersOrm)
                 .where(BannersOrm.feature_id == data.feature_id)

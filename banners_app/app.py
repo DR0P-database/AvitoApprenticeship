@@ -2,12 +2,21 @@ from fastapi import FastAPI
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
-
+from .orm.database import create_tables, delete_tables
 from .routers.user_banner_router import user_banner_router
 from .routers.banner_router import banner_router
 
 
-app = FastAPI()
+async def lifespan(app: FastAPI):
+    try:
+        await create_tables()
+    except:
+        pass
+    yield
+    await delete_tables()
+
+
+app = FastAPI(lifespan=lifespan)
 app.include_router(user_banner_router)
 app.include_router(banner_router)
 

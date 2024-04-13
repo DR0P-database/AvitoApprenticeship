@@ -24,9 +24,8 @@ class SBannerAdd(BaseModel):
     content: dict
     is_active: bool
 
+
 # Pydantic schema to response router when added Banner
-
-
 class SBannerAdded(BaseModel):
     banner_id: int
 

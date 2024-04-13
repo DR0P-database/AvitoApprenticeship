@@ -6,7 +6,7 @@ from .models import Model
 
 engine = create_async_engine(
     url=settings.database_url_asyncpg,
-    echo=True
+    # echo=True
 )
 
 new_session = async_sessionmaker(engine, expire_on_commit=True)

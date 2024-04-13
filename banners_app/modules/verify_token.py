@@ -1,4 +1,5 @@
-from fastapi import HTTPException
+from fastapi.responses import JSONResponse
+from . import *
 
 
 def verify_token(token, is_user_allow=False):
@@ -10,6 +11,6 @@ def verify_token(token, is_user_allow=False):
             raise HTTPException(
                 status_code=403, detail='Пользователь не имеет доступа')
         else:
-            return True  # Токен админа
+            return True  # Токен для админа
 
     return False  # user_token или кого-то другого
