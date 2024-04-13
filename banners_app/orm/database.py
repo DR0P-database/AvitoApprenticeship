@@ -14,8 +14,6 @@ new_session = async_sessionmaker(engine, expire_on_commit=True)
 
 async def create_tables():
     async with engine.begin() as conn:
-        # metadata хранит все таблицы которые мы создали в python
-        # metadata_obj.create_all(engine) создает все таблицы которые есть в metadata
         await conn.run_sync(Model.metadata.create_all)
 
 
