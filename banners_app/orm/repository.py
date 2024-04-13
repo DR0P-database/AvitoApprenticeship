@@ -38,7 +38,7 @@ class BannerRepository:
             query = (
                 select(BannersOrm)
                 .where(BannersOrm.feature_id == data.feature_id)
-                .where(BannersOrm.tag_ids == data.tag_ids)
+                .where(BannersOrm.tag_ids.overlap(data.tag_ids))
             )
             result = await session.execute(query)
             if result.scalars().all():

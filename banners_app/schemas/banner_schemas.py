@@ -1,5 +1,4 @@
-from datetime import datetime
-from pydantic import BaseModel
+from . import *
 
 
 class SUserBannerGet(BaseModel):
@@ -20,13 +19,14 @@ class SBannerGet(BaseModel):
 
 
 class SBannerAdd(BaseModel):
-    tag_ids: list[int] = []
+    tag_ids: Annotated[list[int], Len(min_length=1)]
     feature_id: int
     content: dict
     is_active: bool
 
-
 # Pydantic schema to response router when added Banner
+
+
 class SBannerAdded(BaseModel):
     banner_id: int
 
@@ -38,7 +38,7 @@ class SBanner(SBannerAdd):
 
 
 class SBannerPatch(BaseModel):
-    tag_ids: list[int] | None = None
+    tag_ids: Annotated[list[int] | None, Len(min_length=1)] = None
     feature_id: int | None = None
     content: dict | None = None
     is_active: bool | None = None
