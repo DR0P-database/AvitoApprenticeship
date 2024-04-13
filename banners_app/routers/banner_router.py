@@ -31,3 +31,12 @@ async def update_banner(
 ) -> None:
     verify_token(token=token)
     await BannerRepository.patch_banner(id, patch_banner)
+
+
+@banner_router.delete('/{id}', status_code=204)
+async def delete_banner(
+    id: int,
+    token: str | None = Header(default=None)
+) -> None:
+    verify_token(token=token)
+    await BannerRepository.delete_banner(id)

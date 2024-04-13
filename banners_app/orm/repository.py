@@ -1,6 +1,6 @@
 from sqlalchemy.dialects.postgresql import array
 from fastapi import HTTPException
-from sqlalchemy import or_, select
+from sqlalchemy import delete, or_, select
 
 from .models import BannersOrm
 from .database import new_session
@@ -110,4 +110,17 @@ class BannerRepository:
                     status_code=400, detail='Похожий баннер уже есть')
 
             await session.flush()
+            await session.commit()
+
+    @ staticmethod
+    async def delete_banner(id: int):
+        async with new_session() as session:
+            # Verify if banner is not exist
+            banner = await session.get(BannersOrm, (id, ))
+            if not banner:
+                raise HTTPException(
+                    status_code=404, detail='Баннер для тэга не найден')
+
+            stmt = delete(BannersOrm).filter(BannersOrm.banner_id == id)
+            await session.execute(stmt)
             await session.commit()
