@@ -1,3 +1,4 @@
+from sqlalchemy.dialects.postgresql import array
 from fastapi import HTTPException
 from sqlalchemy import or_, select
 
@@ -76,3 +77,37 @@ class BannerRepository:
                 banner_orm, from_attributes=True) for banner_orm in banner_models]
 
             return banner_schemas
+
+    @staticmethod
+    async def patch_banner(id: int, patch_banner: SBannerPatch):
+        async with new_session() as session:
+            banner = await session.get(BannersOrm, id)
+
+            # Verify 1 If banner by id exists
+            if banner:
+                if patch_banner.tag_ids is not None:
+                    banner.tag_ids = array(
+                        patch_banner.tag_ids, type_=int)
+                if patch_banner.feature_id is not None:
+                    banner.feature_id = patch_banner.feature_id
+                if patch_banner.content is not None:
+                    banner.content = patch_banner.content
+                if patch_banner.is_active is not None:
+                    banner.is_active = patch_banner.is_active
+            else:
+                raise HTTPException(status_code=404, detail='Баннер не найден')
+
+            # Verify 2 If banner with same options exists
+            query = (
+                select(BannersOrm)
+                .where(BannersOrm.banner_id != banner.banner_id)
+                .where(BannersOrm.feature_id == banner.feature_id)
+                .where(BannersOrm.tag_ids.overlap(banner.tag_ids))
+            )
+            result = await session.execute(query)
+            if result.scalars().all():
+                raise HTTPException(
+                    status_code=400, detail='Похожий баннер уже есть')
+
+            await session.flush()
+            await session.commit()
