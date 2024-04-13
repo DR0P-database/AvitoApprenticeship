@@ -9,11 +9,11 @@ from .routers.banner_router import banner_router
 
 async def lifespan(app: FastAPI):
     try:
+        # await delete_tables()
         await create_tables()
     except:
         pass
     yield
-    await delete_tables()
 
 
 app = FastAPI(lifespan=lifespan)
