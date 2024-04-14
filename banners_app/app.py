@@ -15,7 +15,6 @@ async def lifespan(app: FastAPI):
         pass
     yield
 
-
 app = FastAPI(lifespan=lifespan)
 app.include_router(user_banner_router)
 app.include_router(banner_router)
