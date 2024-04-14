@@ -9,6 +9,7 @@ This is a service that allows you to show banners to users, depending on the req
     $ docker compose up
 
 If run without docker:
+
     $ git clone https://github.com/DR0P-database/AvitoApprenticeship.git
     $ cd AvitoApprenticeship
     $ python -m venv .venv
