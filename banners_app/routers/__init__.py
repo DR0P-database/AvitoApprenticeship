@@ -7,3 +7,4 @@ from ..schemas.banner_schemas import *
 from ..orm.repository import BannerRepository
 from ..modules.verify_token import verify_token
 from ..orm.database import get_async_session
+from ..redis_tools.redis_settings import MyRedis
