@@ -20,7 +20,7 @@ async def get_user_banner(
             session,
             banner_options=banner_options,
             is_admin=is_admin)
-        MyRedis.rd.setex(full_request_str, 5, user_banner.model_dump_json())
+        MyRedis.rd.setex(full_request_str, 5*60, user_banner.model_dump_json())
         return user_banner
     else:
         return SUserBanner.model_validate_json(cached_banner)

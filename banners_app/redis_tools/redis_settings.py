@@ -6,4 +6,5 @@ class MyRedis:
 
     @classmethod
     def connect_redis(cls):
-        cls.rd = redis.Redis(host="localhost", port=6379, db=0)
+        cls.rd = redis.Redis(host=settings.REDIS_HOST,
+                             port=settings.REDIS_PORT, db=0)
