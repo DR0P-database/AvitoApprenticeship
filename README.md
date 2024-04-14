@@ -90,6 +90,8 @@ If same banner already exists return will be `code 400`:
 ### Delete banner
 Use method `DELETE` and url 'http://127.0.0.1:8000/banner/{id}' where id is int banner id when add banner
 
+    $ curl -X 'DELETE' 'http://127.0.0.1:8000/banner/1' -H 'x-token: admin_token'
+
 If all right response will be `status 204`:
 
 Else `status or 404`:
