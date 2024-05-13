@@ -3,19 +3,19 @@ This is a service that allows you to show banners to users, depending on the req
 
 ## Setup
 
-    $ git clone https://github.com/DR0P-database/AvitoApprenticeship.git
-    $ cd AvitoApprenticeship
-    $ docker compose build
-    $ docker compose up
+    git clone https://github.com/DR0P-database/AvitoApprenticeship.git
+    cd AvitoApprenticeship
+    docker compose build
+    docker compose up
 
 If run without docker:
 
-    $ git clone https://github.com/DR0P-database/AvitoApprenticeship.git
-    $ cd AvitoApprenticeship
-    $ python -m venv .venv
-    $ source .venv/bin/activate
-    $ pip install -r requirements.txt
-    $ python main.py
+    git clone https://github.com/DR0P-database/AvitoApprenticeship.git
+    cd AvitoApprenticeship
+    python -m venv .venv
+    source .venv/bin/activate
+    pip install -r requirements.txt
+    python main.py
 
 ## Usage
 ### X-Token and users
@@ -26,7 +26,7 @@ If you make a request without a token in the header or the token is not equal to
     { "detail": "Пользователь не имеет доступа" }
 
 ### Add banner
-    $ curl -X 'POST' 'http://127.0.0.1:8000/banner/' -H 'accept: application/json' -H 'x-token: admin_token' -H 'Content-Type: application/json' -d '{
+    curl -X 'POST' 'http://127.0.0.1:8000/banner/' -H 'accept: application/json' -H 'x-token: admin_token' -H 'Content-Type: application/json' -d '{
         "tag_ids": [
           5,6
         ],
@@ -52,7 +52,7 @@ If you enter an invalid data type in the query, you will get an `error 400`:
     { "error": "Некорректные данные" }
 
 ### Get banner by feature/tag
-    $ curl -X 'GET' 'http://127.0.0.1:8000/banner/?feature_id=7&tag_id=1' -H 'accept: application/json' -H 'x-token: admin_token'
+    curl -X 'GET' 'http://127.0.0.1:8000/banner/?feature_id=7&tag_id=1' -H 'accept: application/json' -H 'x-token: admin_token'
 
 <img width="1146" alt="image" src="https://github.com/DR0P-database/AvitoApprenticeship/assets/159697952/e41d3489-794d-4dfe-82a3-71a73e80950a">
 
@@ -60,7 +60,7 @@ Respnse will be with `status 200`:
 <img width="1144" alt="image" src="https://github.com/DR0P-database/AvitoApprenticeship/assets/159697952/7a6752ec-5ec4-4acd-9d33-8886f92a166b">
 
 ### Get user_banner
-    $ curl -X 'GET' 'http://127.0.0.1:8000/user_banner/?feature_id=1&tag_id=7&use_last_revision=true' -H 'accept: application/json' -H 'x-token: user_token'
+    curl -X 'GET' 'http://127.0.0.1:8000/user_banner/?feature_id=1&tag_id=7&use_last_revision=true' -H 'accept: application/json' -H 'x-token: user_token'
 
 "feature_id" and "tag_id" is `required`
 
@@ -90,7 +90,7 @@ If same banner already exists return will be `code 400`:
 ### Delete banner
 Use method `DELETE` and url 'http://127.0.0.1:8000/banner/{id}' where id is int banner id when add banner
 
-    $ curl -X 'DELETE' 'http://127.0.0.1:8000/banner/1' -H 'x-token: admin_token'
+    curl -X 'DELETE' 'http://127.0.0.1:8000/banner/1' -H 'x-token: admin_token'
 
 If all right response will be `status 204`:
 
