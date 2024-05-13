@@ -1,4 +1,4 @@
-# Avito test assignment
+# BannersAPP
 This is a service that allows you to show banners to users, depending on the required fic and tag of the user, as well as manage banners and their associated tags and fic. The service uses PostgreSql, FastAPI, Redis (stores data about user banners for 5 minutes).
 
 ## Setup
