@@ -8,15 +8,6 @@ This is a service that allows you to show banners to users, depending on the req
     docker compose build
     docker compose up
 
-If run without docker:
-
-    git clone https://github.com/DR0P-database/AvitoApprenticeship.git
-    cd AvitoApprenticeship
-    python -m venv .venv
-    source .venv/bin/activate
-    pip install -r requirements.txt
-    python main.py
-
 ## Usage
 ### X-Token and users
 If you make a request without a token in the header or the token is not equal to `"user_token"` and `"admin_token"`, the application will return errors:
